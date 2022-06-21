@@ -1,21 +1,31 @@
 import { FC, useState } from 'react'
 import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react'
-import { Sprites } from '../../interfaces'
+
+import { PokemonInfoProps } from '../../interfaces'
+
 import { localStorageUtils } from '../../util'
+import confetti from 'canvas-confetti'
 
-interface Props {
-    id: number,
-    name: string,
-    sprites: Sprites
-}
-
-export const PokemonDetailInfo: FC<Props> = ({ id, name, sprites }) => {
+export const PokemonDetailInfo: FC<PokemonInfoProps> = ({ id, name, sprites }) => {
 
     const [ isInFavs, setIsInFavs ] = useState<boolean>(localStorageUtils.exists(id));
   
     const onToggleFav = () => {
         localStorageUtils.toggleFavorite(id);
         setIsInFavs(!isInFavs)
+
+        if (isInFavs) return;
+        
+        confetti({
+          zIndex: 999,
+          particleCount: 100,
+          spread: 160,
+          angle: -100,
+          origin: {
+            x: 1,
+            y: 0,
+          }
+        })
     } 
     
   return (

@@ -1,12 +1,9 @@
+import { FC } from "react";
 import { Card, Grid } from "@nextui-org/react";
-import React, { FC } from "react";
 
-interface Props {
-  src: string;
-  name: string;
-}
+import { PokemonDetailImageProps } from "../../interfaces";
 
-export const PokemonDetailImage: FC<Props> = ({ name, src }) => {
+export const PokemonDetailImage: FC<PokemonDetailImageProps> = ({ name, src }) => {
   return (
     <Grid xs={12} sm={4}>
       <Card isHoverable css={{ padding: "30px" }}>

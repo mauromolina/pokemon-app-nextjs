@@ -10,6 +10,7 @@ import {
 } from "../interfaces";
 
 import { pokeApi } from "../api";
+import { sgUtils } from "../util";
 
 const HomePage: NextPage<HomePageProps> = ({ pokemons }) => {
   return (
@@ -21,16 +22,7 @@ const HomePage: NextPage<HomePageProps> = ({ pokemons }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await pokeApi.get<PokemonListResponse>("/pokemon?limit=151");
-
-  const pokemons: SmallPokemon[] = data.results.map((poke, i) => {
-    return {
-      ...poke,
-      id: i + 1,
-      img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-        i + 1
-      }.svg`,
-    };
-  });
+  const pokemons: SmallPokemon[] = sgUtils.generateStaticProps(data);
 
   return {
     props: {

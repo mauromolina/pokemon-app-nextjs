@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
 import { FavsList, NoFavs } from "../../components/favs";
 import { Layout } from "../../components/layouts";
+
 import { localStorageUtils } from "../../util";
 
 const FavoritesPage = () => {
