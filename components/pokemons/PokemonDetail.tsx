@@ -10,7 +10,7 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({pokemon: { id, name, spri
     <Grid.Container css={{ marginTop: "5px" }} gap={2}>
         <PokemonDetailImage
           src={
-            sprites.other?.dream_world.front_default || "/no-image.png"
+            sprites.other?.dream_world.front_default || sprites.other?.home.front_default || ''
           }
           name={name}
         />
