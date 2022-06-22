@@ -16,13 +16,19 @@ const generateFirstGenArray = (): string[] =>
   [...Array(151)].map((value, i) => `${i + 1}`);
 
 const getPokemonInfo = async (nameOrId: string) => {
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${nameOrId}`);
-  const { id, name, sprites } = data;
-  return {
-    id,
-    name,
-    sprites,
-  };
+  
+  try {
+    const { data } = await pokeApi.get<Pokemon>(`/pokemon/${nameOrId}`);
+    const { id, name, sprites } = data;
+    return {
+      id,
+      name,
+      sprites,
+    };
+  } catch (error) {
+    return null;
+    
+  }
 };
 
 const exportedFunctions = {
